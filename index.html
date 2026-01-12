@@ -40,23 +40,22 @@
             overflow-x: hidden; /* 防止动效导致横向滚动条闪烁 */
         }
 
-        /* --- Animations (关键：丝滑进场动效) --- */
+        /* --- Animations (优化：移除Blur，添加硬件加速) --- */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
-                filter: blur(5px); /* 增加一点模糊感，更高级 */
+                transform: translateY(20px); /* 稍微减小位移距离，更稳 */
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
-                filter: blur(0);
             }
         }
 
         /* 初始状态隐藏，防止闪烁 */
         .anim-fade-up {
             opacity: 0;
+            will-change: transform, opacity; /* 关键：启用硬件加速 */
             animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
@@ -67,17 +66,17 @@
 
         /* 头部 */
         .delay-2 {
-            animation-delay: 0.3s;
+            animation-delay: 0.2s; /*稍微加快节奏*/
         }
 
         /* 左列 */
         .delay-3 {
-            animation-delay: 0.45s;
+            animation-delay: 0.3s;
         }
 
         /* 右列 */
         .delay-4 {
-            animation-delay: 0.6s;
+            animation-delay: 0.4s;
         }
 
         /* 页脚 */
@@ -340,7 +339,6 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
-            /* 修复问题1：取消容器高度限制，适应图片 */
             max-width: 100%;
         }
 
@@ -349,7 +347,6 @@
         }
 
         .modal-body img {
-            /* 修复问题1：关键修改 */
             width: 100%; /* 撑满父容器宽度 */
             max-width: 300px; /* 限制最大宽度，防止过大 */
             height: auto; /* 高度自适应！防止长方形图片被压扁 */
