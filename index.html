@@ -4,47 +4,55 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" class="js-site-favicon" type="image/svg+xml"
-          href="https://github.githubassets.com/favicons/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Plus+Jakarta+Sans:wght@600;700&display=swap"
           rel="stylesheet">
     <title>Sponsor wu-clan</title>
     <style>
         :root {
-            --bg-color: #050505;
+            --bg-color: #080808;
             --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --btn-bg: #0a0a0a;
-            --btn-border: #1f1f1f;
-            --btn-hover-bg: #141414;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --text-secondary: #a1a1a1;
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --btn-bg: #121212;
+            --btn-border: #282828;
+            --btn-hover-bg: #1c1c1c;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            min-height: 100vh;
+            height: 100dvh;
+            width: 100vw;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             margin: 0;
-            padding: 40px 20px;
+            padding: 0 20px;
+            overflow: hidden;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden; /* 防止动效导致横向滚动条闪烁 */
         }
 
-        /* --- Animations (优化：移除Blur，添加硬件加速) --- */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% -20%, #1a1a1a 0%, transparent 70%);
+            z-index: -1;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px); /* 稍微减小位移距离，更稳 */
+                transform: translateY(12px);
             }
             to {
                 opacity: 1;
@@ -52,57 +60,45 @@
             }
         }
 
-        /* 初始状态隐藏，防止闪烁 */
         .anim-fade-up {
             opacity: 0;
-            will-change: transform, opacity; /* 关键：启用硬件加速 */
-            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            will-change: transform, opacity;
+            animation: fadeInUp 0.5s ease-out forwards;
         }
 
-        /* 错落延迟，营造节奏感 */
         .delay-1 {
             animation-delay: 0.1s;
         }
 
-        /* 头部 */
         .delay-2 {
-            animation-delay: 0.2s; /*稍微加快节奏*/
+            animation-delay: 0.2s;
         }
 
-        /* 左列 */
         .delay-3 {
             animation-delay: 0.3s;
         }
 
-        /* 右列 */
         .delay-4 {
             animation-delay: 0.4s;
         }
 
-        /* 页脚 */
-
-
         /* --- Header --- */
         .header-section {
             text-align: center;
-            margin-bottom: 4.5rem;
-            position: relative;
-            z-index: 10;
+            margin-bottom: 2.5vh;
         }
 
         .avatar-wrapper {
-            width: 86px;
-            height: 86px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, #1a1a1a, #050505);
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 0.8rem;
+            background: linear-gradient(135deg, #222, #0a0a0a);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            color: #fff;
+            font-size: 1.5rem;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.02);
             position: relative;
         }
 
@@ -113,601 +109,477 @@
             right: 0;
             background: #e11d48;
             color: #fff;
-            font-size: 0.8rem;
-            width: 26px;
-            height: 26px;
+            font-size: 0.6rem;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 4px solid var(--bg-color);
+            border: 2px solid var(--bg-color);
         }
 
         .header-section h1 {
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: 2.5rem;
-            letter-spacing: -0.04em;
-            margin-bottom: 0.75rem;
-            background: linear-gradient(to bottom, #fff 40%, #888 100%);
+            font-size: 1.6rem;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.2rem;
+            background: linear-gradient(to bottom, #fff 60%, #aaa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .header-section p {
             color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.6;
-            max-width: 460px;
-            margin: 0 auto;
+            font-size: 0.85rem;
         }
 
-        /* --- Layout & Grid --- */
+        /* --- Sponsor Card --- */
         .content-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 860px;
         }
 
         .section-label {
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #555;
-            margin-bottom: 1.25rem;
+            letter-spacing: 0.12em;
+            color: #444;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .section-label::after {
             content: '';
             height: 1px;
             flex-grow: 1;
-            background: var(--border-subtle);
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        /* --- Button Design --- */
         .sponsor-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: var(--btn-bg);
             border: 1px solid var(--btn-border);
-            padding: 16px 20px;
-            margin-bottom: 12px;
-            border-radius: 12px;
+            padding: 10px 14px;
+            margin-bottom: 6px;
+            border-radius: 9px;
             text-decoration: none;
-            cursor: pointer;
             transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .sponsor-item:hover {
+            background: var(--btn-hover-bg);
+            border-color: #555;
+            transform: translateY(-1px);
         }
 
         .sponsor-left {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .sponsor-icon {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.03);
-            color: #777;
-            font-size: 1rem;
+            color: #666;
+            font-size: 0.85rem;
             transition: var(--transition);
         }
 
         .sponsor-name {
             font-weight: 500;
-            font-size: 0.9rem;
-            color: #d4d4d4;
-        }
-
-        .sponsor-arrow {
-            color: #333;
             font-size: 0.8rem;
-            transition: var(--transition);
-            transform: translateX(-4px);
-            opacity: 0;
+            color: #d0d0d0;
         }
 
-        /* Hover Interaction */
-        .sponsor-item:hover {
-            background: var(--btn-hover-bg);
-            border-color: #333;
-            transform: translateY(-2px);
-        }
-
-        .sponsor-item:hover .sponsor-arrow {
-            opacity: 1;
-            transform: translateX(0);
-            color: #666;
-        }
-
-        /* Brand Colors Reveal on Hover */
-        .bmc-item:hover .sponsor-icon {
-            color: #FFDD00;
-            background: rgba(255, 221, 0, 0.1);
-        }
-
-        .afdian-item:hover .sponsor-icon {
-            color: #946ce6;
-            background: rgba(148, 108, 230, 0.1);
+        /* --- Brand Colors on Hover --- */
+        .alipay-item:hover .sponsor-icon {
+            color: #1677ff;
+            background: rgba(22, 119, 255, 0.15);
         }
 
         .wechat-item:hover .sponsor-icon {
             color: #07c160;
-            background: rgba(7, 193, 96, 0.1);
+            background: rgba(7, 193, 96, 0.15);
         }
 
-        .alipay-item:hover .sponsor-icon {
-            color: #1677ff;
-            background: rgba(22, 119, 255, 0.1);
+        .afdian-item:hover .sponsor-icon {
+            color: #946ce6;
+            background: rgba(148, 108, 230, 0.15);
+        }
+
+        .bmc-item:hover .sponsor-icon {
+            color: #FFDD00;
+            background: rgba(255, 221, 0, 0.15);
         }
 
         .binance-item:hover .sponsor-icon {
             color: #F3BA2F;
-            background: rgba(243, 186, 47, 0.1);
+            background: rgba(243, 186, 47, 0.15);
         }
 
         .crypto-item:hover .sponsor-icon {
             color: #fff;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
         }
-
 
         /* --- Footer --- */
         .footer-section {
-            margin-top: 3rem;
-            padding-top: 2rem;
+            margin-top: 2vh;
+            padding-top: 1rem;
             border-top: 1px solid var(--border-subtle);
             width: 100%;
-            max-width: 900px;
+            max-width: 860px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .social-links a {
-            color: #555;
-            font-size: 1.1rem;
-            transition: color 0.2s ease;
-        }
-
-        .social-links a:hover {
-            color: #fff;
-        }
-
         .copyright {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #444;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 500;
         }
 
-        /* --- Modal Design --- */
+        @media (max-height: 700px) {
+            .header-section {
+                margin-bottom: 1.5vh;
+            }
+
+            .sponsor-item {
+                padding: 8px 12px;
+                margin-bottom: 4px;
+            }
+        }
+
+        /* --- Modals --- */
         .modal-content {
-            background-color: #0F0F0F;
-            border: 1px solid #2a2a2a;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            background-color: #0f0f0f;
+            border: 1px solid #333;
+            border-radius: 16px;
         }
 
         .modal-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .modal-title {
-            color: #fff;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0 auto;
-        }
-
-        .btn-close {
-            filter: invert(1);
-            opacity: 0.3;
-            position: absolute;
-            right: 1.25rem;
-            transition: opacity 0.2s;
-        }
-
-        .btn-close:hover {
-            opacity: 0.8;
-        }
-
-        .modal-body {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         .qr-wrapper {
-            padding: 12px;
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            max-width: 100%;
-        }
-
-        .qr-wrapper:hover {
-            transform: scale(1.02);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
         }
 
         .modal-body img {
-            width: 100%; /* 撑满父容器宽度 */
-            max-width: 300px; /* 限制最大宽度，防止过大 */
-            height: auto; /* 高度自适应！防止长方形图片被压扁 */
-            display: block;
-            object-fit: contain; /* 双重保险 */
+            max-width: 240px;
+            height: auto;
         }
 
         .wallet-input-group {
             width: 100%;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             position: relative;
+            text-align: left;
         }
 
         .wallet-input-group input {
             width: 100%;
             background: #161616;
             border: 1px solid #333;
-            color: #ccc;
-            padding: 14px 16px;
-            border-radius: 10px;
-            font-family: 'SF Mono', 'Menlo', monospace;
-            font-size: 0.85rem;
-            transition: border-color 0.2s;
-        }
-
-        .wallet-input-group input:focus {
-            outline: none;
-            border-color: #555;
             color: #fff;
+            padding: 10px 60px 10px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-family: monospace;
         }
 
         .copy-trigger {
             position: absolute;
-            right: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #2a2a2a;
-            border: 1px solid #333;
+            right: 6px;
+            top: 6px;
+            background: #333;
+            border: none;
             color: #fff;
-            font-size: 0.75rem;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 5px;
             transition: 0.2s;
-            font-weight: 500;
         }
 
         .copy-trigger:hover {
-            background: #fff;
-            color: #000;
-            border-color: #fff;
+            background: #555;
         }
-
-        @media (max-width: 768px) {
-            .footer-section {
-                flex-direction: column-reverse;
-                gap: 1.5rem;
-            }
-
-            .content-container {
-                padding: 0 10px;
-            }
-        }
-
     </style>
 </head>
 
 <body>
 
-<!-- Header (Anim: Delay 1) -->
-<div class="header-section anim-fade-up delay-1">
-    <div class="avatar-wrapper">
-        <i class="fab fa-github-alt"></i>
+    <div class="header-section anim-fade-up delay-1">
+        <div class="avatar-wrapper"><i class="fab fa-github-alt"></i></div>
+        <h1>Sponsor wu-clan</h1>
+        <p>Fueling innovation with every contribution.</p>
     </div>
-    <h1>Sponsor&nbsp;&nbsp;wu-clan</h1>
-    <p>Fueling innovation with every contribution.<br>Thank you for your support.</p>
-</div>
 
-<!-- Main Content: Left-Right Split -->
-<div class="content-container">
+    <div class="content-container">
+        <div class="row gx-4">
+            <!-- Direct Support -->
+            <div class="col-md-6 anim-fade-up delay-2">
+                <div class="section-label">Direct Support</div>
 
-    <div class="row gx-5">
-        <!-- Left Column: Fiat/Apps (Anim: Delay 2) -->
-        <div class="col-md-6 anim-fade-up delay-2">
-            <div class="section-label">Direct Support</div>
-
-            <div class="sponsor-item alipay-item" data-bs-toggle="modal" data-bs-target="#alipay">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fab fa-alipay"></i></div>
-                    <span class="sponsor-name">AliPay</span>
+                <div class="sponsor-item alipay-item" data-bs-toggle="modal" data-bs-target="#alipay">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fab fa-alipay"></i></div>
+                        <span class="sponsor-name">AliPay</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
                 </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
+
+                <div class="sponsor-item wechat-item" data-bs-toggle="modal" data-bs-target="#wechat">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fab fa-weixin"></i></div>
+                        <span class="sponsor-name">WeChat Pay</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
+                </div>
+
+                <div class="sponsor-item wechat-item" data-bs-toggle="modal" data-bs-target="#wechat_zs">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fas fa-heart"></i></div>
+                        <span class="sponsor-name">WeChat Reward</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
+                </div>
+
+                <div class="sponsor-item afdian-item" data-bs-toggle="modal" data-bs-target="#afdian">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fas fa-bolt"></i></div>
+                        <span class="sponsor-name">Ai Fa Dian</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
+                </div>
+
+                <div class="sponsor-item bmc-item" data-bs-toggle="modal" data-bs-target="#buymeacoffee">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fas fa-coffee"></i></div>
+                        <span class="sponsor-name">Buy me a coffee</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
+                </div>
             </div>
 
-            <div class="sponsor-item wechat-item" data-bs-toggle="modal" data-bs-target="#wechat">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fab fa-weixin"></i></div>
-                    <span class="sponsor-name">WeChat Pay</span>
-                </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
+            <!-- Crypto -->
+            <div class="col-md-6 anim-fade-up delay-3">
+                <div class="section-label">Crypto Currencies</div>
 
-            <div class="sponsor-item wechat-item" data-bs-toggle="modal" data-bs-target="#wechat_zs">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fab fa-weixin"></i></div>
-                    <span class="sponsor-name">WeChat Reward</span>
+                <div class="sponsor-item crypto-item" data-bs-toggle="modal" data-bs-target="#usdt">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <span class="sponsor-name">USDT (TRC20)</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
                 </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
 
-            <div class="sponsor-item afdian-item" data-bs-toggle="modal" data-bs-target="#afdian">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fas fa-bolt"></i></div>
-                    <span class="sponsor-name">Ai Fa Dian</span>
+                <div class="sponsor-item binance-item" data-bs-toggle="modal" data-bs-target="#binance">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fas fa-coins"></i></div>
+                        <span class="sponsor-name">Binance Pay</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
                 </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
 
-            <div class="sponsor-item bmc-item" data-bs-toggle="modal" data-bs-target="#buymeacoffee">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fas fa-coffee"></i></div>
-                    <span class="sponsor-name">Buy me a coffee</span>
+                <div class="sponsor-item crypto-item" data-bs-toggle="modal" data-bs-target="#eth">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fab fa-ethereum"></i></div>
+                        <span class="sponsor-name">Ethereum</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
                 </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
-        </div>
 
-        <!-- Right Column: Crypto (Anim: Delay 3) -->
-        <div class="col-md-6 anim-fade-up delay-3">
-            <div class="section-label">Crypto Currencies</div>
-
-            <div class="sponsor-item crypto-item" data-bs-toggle="modal" data-bs-target="#usdt">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fas fa-dollar-sign"></i></div>
-                    <span class="sponsor-name">USDT (TRC20)</span>
+                <div class="sponsor-item crypto-item" data-bs-toggle="modal" data-bs-target="#okx">
+                    <div class="sponsor-left">
+                        <div class="sponsor-icon"><i class="fas fa-circle-notch"></i></div>
+                        <span class="sponsor-name">OKX Chain</span></div>
+                    <i class="fas fa-chevron-right opacity-25 small"></i>
                 </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
-
-            <div class="sponsor-item binance-item" data-bs-toggle="modal" data-bs-target="#binance">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fas fa-coins"></i></div>
-                    <span class="sponsor-name">Binance Pay</span>
-                </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
-
-            <div class="sponsor-item crypto-item" data-bs-toggle="modal" data-bs-target="#eth">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fab fa-ethereum"></i></div>
-                    <span class="sponsor-name">Ethereum</span>
-                </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
-            </div>
-
-            <div class="sponsor-item crypto-item" data-bs-toggle="modal" data-bs-target="#okx">
-                <div class="sponsor-left">
-                    <div class="sponsor-icon"><i class="fas fa-circle-notch"></i></div>
-                    <span class="sponsor-name">OKX Chain</span>
-                </div>
-                <i class="fas fa-arrow-right sponsor-arrow"></i>
             </div>
         </div>
     </div>
 
-</div>
-
-<!-- Footer (Anim: Delay 4) -->
-<div class="footer-section anim-fade-up delay-4">
-    <div class="copyright">
-        &copy; 2026 wu-clan. Designed with passion.
+    <div class="footer-section anim-fade-up delay-4">
+        <div class="copyright">&copy; 2026 wu-clan. Designed with passion.</div>
+        <div class="social-links">
+            <a href="https://github.com/wu-clan" target="_blank" style="color:#444;"><i class="fab fa-github"></i></a>
+        </div>
     </div>
-    <div class="social-links">
-        <a href="https://github.com/wu-clan" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-</div>
 
-<!-- Modals -->
-<!-- Buy Me A Coffee -->
-<div class="modal fade" id="buymeacoffee" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Buy me a coffee</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/bmc_qr.jpg" alt="QR Code">
+    <!-- --- All Modals --- -->
+    <!-- Alipay -->
+    <div class="modal fade" id="alipay" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">AliPay</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/zfb.jpg"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Afdian -->
-<div class="modal fade" id="afdian" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ai Fa Dian</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/afdian.jpg" alt="QR Code">
+    <!-- WeChat -->
+    <div class="modal fade" id="wechat" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">WeChat Pay</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/weixin.jpg">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- WeChat -->
-<div class="modal fade" id="wechat" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">WeChat Pay</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/weixin.jpg" alt="QR Code">
+    <!-- WeChat Reward -->
+    <div class="modal fade" id="wechat_zs" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">WeChat Reward</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/weixin_zs.jpg">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- WeChat Reward -->
-<div class="modal fade" id="wechat_zs" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">WeChat Reward</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/weixin_zs.jpg" alt="QR Code">
+    <!-- Afdian -->
+    <div class="modal fade" id="afdian" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">Ai Fa Dian</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/afdian.jpg">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Alipay -->
-<div class="modal fade" id="alipay" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">AliPay</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/zfb.jpg" alt="QR Code">
+    <!-- BMC -->
+    <div class="modal fade" id="buymeacoffee" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">Buy me a coffee</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/bmc_qr.jpg">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Binance -->
-<div class="modal fade" id="binance" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Binance Pay</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/binance.jpg" alt="QR Code">
+    <!-- Binance -->
+    <div class="modal fade" id="binance" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">Binance Pay</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/binance.jpg">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- ETH -->
-<div class="modal fade" id="eth" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ethereum (ERC20)</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="wallet-input-group">
-                    <input type="text" id="eth-address" value="0xE844012f173b7fdf3D87f783FdF67e665AF116C0" readonly>
-                    <button class="copy-trigger" data-clipboard-target="#eth-address">Copy</button>
+    <!-- USDT -->
+    <div class="modal fade" id="usdt" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">USDT (TRC20)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/ERC20.jpg" alt="QR Code">
+                <div class="modal-body text-center">
+                    <div class="wallet-input-group"><input type="text" id="usdt-addr"
+                                                           value="TByAjwtzig4uynuVyD9FVtdodJLGPTdnNE" readonly>
+                        <button class="copy-trigger" data-clipboard-target="#usdt-addr">Copy</button>
+                    </div>
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/USDT.jpg"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- USDT -->
-<div class="modal fade" id="usdt" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">USDT (TRC20)</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="wallet-input-group">
-                    <input type="text" id="usdt-address" value="TByAjwtzig4uynuVyD9FVtdodJLGPTdnNE" readonly>
-                    <button class="copy-trigger" data-clipboard-target="#usdt-address">Copy</button>
+    <!-- ETH -->
+    <div class="modal fade" id="eth" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">Ethereum (ERC20)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/USDT.jpg" alt="QR Code">
+                <div class="modal-body text-center">
+                    <div class="wallet-input-group"><input type="text" id="eth-addr"
+                                                           value="0xE844012f173b7fdf3D87f783FdF67e665AF116C0" readonly>
+                        <button class="copy-trigger" data-clipboard-target="#eth-addr">Copy</button>
+                    </div>
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/ERC20.jpg">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- OKX -->
-<div class="modal fade" id="okx" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">OKX Chain</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="wallet-input-group">
-                    <input type="text" id="okx-address" value="0xE844012f173b7fdf3D87f783FdF67e665AF116C0" readonly>
-                    <button class="copy-trigger" data-clipboard-target="#okx-address">Copy</button>
+    <!-- OKX -->
+    <div class="modal fade" id="okx" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0"><h5 class="modal-title w-100 text-center">OKX Chain</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="qr-wrapper">
-                    <img src="https://wu-clan.github.io/picx-images-hosting/pay/OKX.jpg" alt="QR Code">
+                <div class="modal-body text-center">
+                    <div class="wallet-input-group"><input type="text" id="okx-addr"
+                                                           value="0xE844012f173b7fdf3D87f783FdF67e665AF116C0" readonly>
+                        <button class="copy-trigger" data-clipboard-target="#okx-addr">Copy</button>
+                    </div>
+                    <div class="qr-wrapper"><img src="https://wu-clan.github.io/picx-images-hosting/pay/OKX.jpg"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
-<script>
-    let clipboard = new ClipboardJS('.copy-trigger');
-    clipboard.on('success', function (e) {
-        let originalText = e.trigger.innerText;
-        e.trigger.innerText = 'Copied!';
-        e.trigger.style.color = '#07c160';
-        e.trigger.style.borderColor = '#07c160';
-
-        setTimeout(() => {
-            e.trigger.innerText = originalText;
-            e.trigger.style.color = '';
-            e.trigger.style.borderColor = '';
-        }, 2000);
-
-        e.clearSelection();
-    });
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+    <script>
+        const clipboard = new ClipboardJS('.copy-trigger');
+        clipboard.on('success', (e) => {
+            const btn = e.trigger;
+            btn.innerText = 'Copied!';
+            btn.style.background = '#07c160';
+            setTimeout(() => {
+                btn.innerText = 'Copy';
+                btn.style.background = '';
+            }, 2000);
+            e.clearSelection();
+        });
+    </script>
 </body>
 </html>
